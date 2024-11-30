@@ -1,0 +1,41 @@
+div.screenOuter {
+    font-family: var(--font-inter);
+    font-family: var(--font-rubik);
+
+    width: 100dvw;
+    height: 100dvh;
+    margin: 0 auto;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+
+    .screenInner {
+        width:100dvw;
+        height:100dvh;
+        margin: 0;
+        padding: 0;
+        position:relative;
+        border-radius:0;
+        overflow: hidden;
+        border:none;
+        transform:translateY(-1px);
+    }
+    
+    @media screen and (min-width: 700px) {
+        width: 390px; // Standard iPhone width
+        height: 844px; // iPhone 12/13/14 height
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 40px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.557);
+
+        .screenInner {
+            width: 390px;
+            height: 844px;
+            border: 4px solid rgb(58, 58, 58);
+            border-radius: 2rem;
+        }
+    }
+
+}

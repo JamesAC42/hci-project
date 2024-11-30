@@ -1,0 +1,14 @@
+.mainScreen {
+    height: 100%;
+    width: 100%;
+    background-color: #f5f5f5;
+    position: relative;
+    overflow: hidden;
+
+    .content {
+        height: calc(100% - 2rem);
+        width: 100%;
+        padding-top: 2rem;
+        position: relative;
+    }
+}

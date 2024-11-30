@@ -1,0 +1,23 @@
+.bookItem {
+    min-width: 150px;
+    
+    .cover {
+        width: 150px;
+        height: 200px;
+        background-color: #eee;
+        border-radius: 8px;
+        margin-bottom: 0.5rem;
+    }
+
+    .info {
+        h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+            color: #666;
+        }
+    }
+} 
