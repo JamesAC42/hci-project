@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import styles from "@/styles/LockScreen.module.scss";
 import StatusBar from "@/components/StatusBar";
 import { IoIosFlashlight, IoIosCamera  } from "react-icons/io";
+import { useRouter } from 'next/router';
+import wallpaperImage from '@/images/wallpaper.jpeg';
 
 const LockScreen = ({ onUnlock }) => {
+    const router = useRouter();
     const [time, setTime] = useState('');
     const [date, setDate] = useState('');
     const [touchStart, setTouchStart] = useState(null);
@@ -62,6 +66,16 @@ const LockScreen = ({ onUnlock }) => {
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
         >
+            <div className={styles.wallpaperContainer}>
+                <Image
+                    src={wallpaperImage}
+                    alt="Wallpaper"
+                    fill
+                    priority
+                    sizes="100vw"
+                    className={styles.wallpaper}
+                />
+            </div>
             <StatusBar />
             <div className={styles.timeContainer}>
                 <div className={styles.date}>{date}</div>
