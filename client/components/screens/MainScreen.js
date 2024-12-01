@@ -6,7 +6,6 @@ import Discover from "@/components/main/Discover";
 const MainScreen = () => {
     return (
         <div className={styles.mainScreen}>
-            <StatusBar />
             <div className={styles.content}>
                 <Discover />
                 <Card />

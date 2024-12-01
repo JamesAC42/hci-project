@@ -1,11 +1,18 @@
 .library {
     height: 100%;
-    padding: 1rem;
+    padding: 0rem 1.5rem;
     overflow-y: auto;
 
     h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1.5rem;
+        font-size: 1.2rem;
+        margin-bottom: 1.2rem;
+        text-align:center;
+    }
+
+    hr {
+        border: none;            
+        height: 1px;        
+        background-color: rgb(204, 204, 204); 
     }
 
     .section {

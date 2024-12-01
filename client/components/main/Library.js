@@ -5,6 +5,8 @@ const Library = () => {
     return (
         <div className={styles.library}>
             <h2>My Library</h2>
+
+            <hr/>
             
             <div className={styles.section}>
                 <h3>Continue Listening</h3>

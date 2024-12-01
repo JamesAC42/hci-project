@@ -5,12 +5,18 @@ const Discover = () => {
     return (
         <div className={styles.discover}>
             <h2>Discover</h2>
+
+            <hr/>
             
             <div className={styles.section}>
                 <h3>For you</h3>
                 <BookCarousel 
                     books={[
                         { title: 'Audio Book 1', author: 'Max Newman' },
+                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
+                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
+                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
+                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
                         { title: 'Audio Book 2', author: 'Bruce Wayne' },
                         { title: 'Audio Book 3', author: 'Test Test' }
                     ]}
@@ -22,6 +28,8 @@ const Discover = () => {
                 <BookCarousel 
                     books={[
                         { title: 'Audio Book 1', author: 'John Doe' },
+                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
+                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
                         { title: 'Audio Book 2', author: 'Bruce Wayne' },
                         { title: 'Audio Book 3', author: 'Test Test' }
                     ]}

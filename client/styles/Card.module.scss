@@ -3,7 +3,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: calc(100% - 60px);
+    height: calc(100% - 20px);
     background: white;
     border-radius: 20px 20px 0 0;
     transition: transform 0.3s ease-out;
@@ -27,6 +27,22 @@
                 transform:scale(1.5);
                 color:#7e7e7e;
             }
+        }
+    }
+
+    .chatBubble {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 0;
+        svg {
+            transform:scale(1.5) translate(-100%,-2px);
+            color:#7e7e7e;
         }
     }
 
@@ -63,14 +79,14 @@
         gap: 8px;
 
         .dot {
-            width: 8px;
-            height: 8px;
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background: #ddd;
             transition: background-color 0.3s ease;
 
             &.active {
-                background: #666;
+                background: #f3c089;
             }
         }
     }

@@ -3,6 +3,7 @@ import styles from '@/styles/Card.module.scss';
 import Playback from './Playback';
 import Library from './Library';
 import Navigation from './Navigation';
+import { SiChatwoot } from "react-icons/si";
 
 import { IoIosArrowDown  } from "react-icons/io";
 
@@ -17,6 +18,11 @@ const Card = () => {
     const cardRef = useRef(null);
 
     const handleTouchStart = (e) => {
+        const target = e.target;
+        if (target.closest(`.${styles.progressBar}`) || target.closest(`.${styles.scrubber}`)) {
+            return;
+        }
+
         setIsDragging(true);
         setStartY(e.touches[0].clientY);
         setStartX(e.touches[0].clientX);
@@ -127,6 +133,12 @@ const Card = () => {
                     <IoIosArrowDown  />
                 </div>
             </div>
+
+            {!isMinimized && (
+                <div className={styles.chatBubble}>
+                    <SiChatwoot />
+                </div>
+            )}
 
             <div className={styles.content}>
                 <div 

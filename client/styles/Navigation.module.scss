@@ -9,16 +9,26 @@
 
         .tab {
             flex: 1;
-            padding: 1rem;
+            padding: 1.5rem 1rem;
             background: none;
             border: none;
-            font-size: 1rem;
-            color: #666;
+            font-size: 1.1rem;
+            color: #2f2f2f;
             cursor: pointer;
+            font-family: var(--font-rubik);
+            font-weight:500;
 
-            &.active {
-                color: #000;
-                border-bottom: 2px solid #000;
+            position:relative;
+
+            &.active::after {
+                content:'';
+                position:absolute;
+                bottom:0;
+                left:50%;
+                transform:translateX(-50%);
+                width:50%;
+                height:2px;
+                background:#378aee;
             }
         }
     }
@@ -26,7 +36,7 @@
     .content {
         flex: 1;
         overflow-y: auto;
-        padding: 1rem;
+        padding: 0 1.5rem;
 
         .chapter {
             padding: 1rem 0;
@@ -36,9 +46,10 @@
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                gap:1.5rem;
 
                 h4 {
-                    font-size: 0.9rem;
+                    font-size: 1rem;
                 }
 
                 span {

@@ -10,7 +10,18 @@ const Navigation = () => {
         { title: 'Acknowledgments', duration: '09:41' },
         { title: 'Prologue: The Collapse of Civilizations: 1177 BC', duration: '04:24' },
         { title: 'Chapter One: Act I: Of Arms and the Man: The Fifteenth Century BC', duration: '28:25' },
-        { title: 'Chapter Two: Act II: An (Aegean) Affair to Remember: The Fourteenth Century BC', duration: '1:15:30' }
+        { title: 'Chapter Two: Act II: An (Aegean) Affair to Remember: The Fourteenth Century BC', duration: '1:15:30' },
+        { title: 'Chapter Three: Act III: Fighting for Gods and Country: The Thirteenth Century BC', duration: '52:15' },
+        { title: 'Chapter Four: The End of an Era: The Twelfth Century BC', duration: '45:30' },
+        { title: 'Chapter Five: A Perfect Storm of Calamities', duration: '38:45' },
+        { title: 'Chapter Six: The Last Days of the Bronze Age', duration: '1:05:20' },
+        { title: 'Chapter Seven: The Aftermath', duration: '42:10' },
+        { title: 'Chapter Eight: The Rise of the Iron Age', duration: '56:35' },
+        { title: 'Chapter Nine: Legacy of the Bronze Age Collapse', duration: '49:15' },
+        { title: 'Chapter Ten: Lessons from History', duration: '35:40' },
+        { title: 'Epilogue: Echoes Through Time', duration: '28:50' },
+        { title: 'Closing Credits and Acknowledgments', duration: '05:15' }
+    
     ];
 
     return (
