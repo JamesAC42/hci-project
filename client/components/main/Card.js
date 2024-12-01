@@ -81,7 +81,7 @@ const Card = () => {
 
     const handleTouchEnd = () => {
         setIsDragging(false);
-        if (Math.abs(offsetY) > 100) {
+        if (Math.abs(offsetY) > 50) {
             setIsMinimized(offsetY > 0);
         }
         handleHorizontalSwipe();
@@ -129,7 +129,9 @@ const Card = () => {
             onTouchEnd={handleTouchEnd}
         >
             <div className={styles.pullBar}>
-                <div className={styles.indicator}>
+                <div 
+                    className={styles.indicator}
+                    onClick={() => setIsMinimized(!isMinimized)}>
                     <IoIosArrowDown  />
                 </div>
             </div>
