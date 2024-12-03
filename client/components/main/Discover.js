@@ -1,7 +1,13 @@
 import styles from '@/styles/Discover.module.scss';
 import BookCarousel from './BookCarousel';
+import { books } from '@/data/books';
 
 const Discover = () => {
+    // For demo purposes, we'll split the books into different categories
+    const forYou = books.slice(0, 2);  // First two books
+    const newReleases = books.slice(2); // Last two books
+    const localBooks = [books[1], books[3]]; // Mix of books
+
     return (
         <div className={styles.discover}>
             <h2>Discover</h2>
@@ -10,41 +16,17 @@ const Discover = () => {
             
             <div className={styles.section}>
                 <h3>For you</h3>
-                <BookCarousel 
-                    books={[
-                        { title: 'Audio Book 1', author: 'Max Newman' },
-                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
-                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
-                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
-                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
-                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
-                        { title: 'Audio Book 3', author: 'Test Test' }
-                    ]}
-                />
+                <BookCarousel books={forYou} />
             </div>
 
             <div className={styles.section}>
                 <h3>New Releases</h3>
-                <BookCarousel 
-                    books={[
-                        { title: 'Audio Book 1', author: 'John Doe' },
-                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
-                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
-                        { title: 'Audio Book 2', author: 'Bruce Wayne' },
-                        { title: 'Audio Book 3', author: 'Test Test' }
-                    ]}
-                />
+                <BookCarousel books={newReleases} />
             </div>
 
             <div className={styles.section}>
                 <h3>Based on your location</h3>
-                <BookCarousel 
-                    books={[
-                        { title: 'Audio Book 1', author: 'Local Author' },
-                        { title: 'Audio Book 2', author: 'Local Writer' },
-                        { title: 'Audio Book 3', author: 'Regional Author' }
-                    ]}
-                />
+                <BookCarousel books={localBooks} />
             </div>
         </div>
     );

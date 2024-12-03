@@ -1,12 +1,28 @@
 .carousel {
     display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    scrollbar-width: thin;
-    padding: 0.5rem 0;
+    gap: 1.25rem;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    padding: 0.5rem 2rem;
+    margin: 0 -1rem;
     -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    cursor: grab;
+    user-select: none;
+
+    transform:translateX(1rem);
 
     &::-webkit-scrollbar {
         display: none;
+    }
+
+    &::after {
+        content: '';
+        min-width: 1rem;
+        display: block;
+    }
+
+    &:active {
+        cursor: grabbing;
     }
 } 

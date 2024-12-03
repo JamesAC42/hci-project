@@ -1,33 +1,50 @@
 import styles from '@/styles/Playback.module.scss';
 import { IoPlayCircle, IoPauseCircle, IoPlaySkipForward, IoPlaySkipBack } from 'react-icons/io5';
 import { IoBookmarkOutline } from "react-icons/io5";
-import { TbRewindBackward30 } from "react-icons/tb";
+import { TbRewindBackward30, TbRewindForward30 } from "react-icons/tb";
 import { useState, useRef } from 'react';
+import { useAudio } from '@/context/AudioContext';
 
 const Playback = () => {
-    const [isPlaying, setIsPlaying] = useState(false);
-    const [progress, setProgress] = useState(30); // percentage
+    const {
+        isPlaying,
+        currentTime,
+        duration,
+        playAudio,
+        pauseAudio,
+        seekTo,
+        rewind30,
+        skipAhead30,
+        currentBook,
+        currentChapter,
+        skipToChapter
+    } = useAudio();
     const progressBarRef = useRef(null);
     const isDraggingRef = useRef(false);
 
-    const totalDuration = 23 * 60; // 23 minutes in seconds
+    const progress = (currentTime / duration) * 100;
     
     const formatTime = (seconds) => {
-        const remainingSeconds = Math.floor((totalDuration * (100 - progress)) / 100);
+        const remainingSeconds = Math.floor(duration - currentTime);
         const mins = Math.floor(remainingSeconds / 60);
         const secs = remainingSeconds % 60;
         return `-${mins}:${secs.toString().padStart(2, '0')}`;
     };
 
     const handlePlayPause = () => {
-        setIsPlaying(!isPlaying);
+        if (isPlaying) {
+            pauseAudio();
+        } else {
+            playAudio();
+        }
     };
 
     const handleProgressBarClick = (e) => {
         const rect = progressBarRef.current.getBoundingClientRect();
         const clickPosition = e.clientX - rect.left;
         const newProgress = (clickPosition / rect.width) * 100;
-        setProgress(Math.min(Math.max(newProgress, 0), 100));
+        const newTime = (newProgress / 100) * duration;
+        seekTo(newTime);
     };
 
     const handleScrubberMouseDown = (e) => {
@@ -41,7 +58,8 @@ const Playback = () => {
         const rect = progressBarRef.current.getBoundingClientRect();
         const movePosition = e.clientX - rect.left;
         const newProgress = (movePosition / rect.width) * 100;
-        setProgress(Math.min(Math.max(newProgress, 0), 100));
+        const newTime = (newProgress / 100) * duration;
+        seekTo(newTime);
     };
 
     const handleMouseUp = () => {
@@ -55,7 +73,8 @@ const Playback = () => {
         const rect = progressBarRef.current.getBoundingClientRect();
         const touchPosition = e.touches[0].clientX - rect.left;
         const newProgress = (touchPosition / rect.width) * 100;
-        setProgress(Math.min(Math.max(newProgress, 0), 100));
+        const newTime = (newProgress / 100) * duration;
+        seekTo(newTime);
     };
 
     const handleScrubberTouchStart = (e) => {
@@ -71,7 +90,8 @@ const Playback = () => {
         const rect = progressBarRef.current.getBoundingClientRect();
         const movePosition = e.touches[0].clientX - rect.left;
         const newProgress = (movePosition / rect.width) * 100;
-        setProgress(Math.min(Math.max(newProgress, 0), 100));
+        const newTime = (newProgress / 100) * duration;
+        seekTo(newTime);
     };
 
     const handleTouchEnd = () => {
@@ -80,19 +100,58 @@ const Playback = () => {
         document.removeEventListener('touchend', handleTouchEnd);
     };
 
+    const handleSkipBack = () => {
+        if (currentChapter > 0) {
+            skipToChapter(currentChapter - 1);
+        }
+    };
+
+    const handleSkipForward = () => {
+        if (currentBook && currentChapter < currentBook.chapters.length - 1) {
+            skipToChapter(currentChapter + 1);
+        }
+    };
+
+    const handleRewind30 = () => {
+        rewind30();
+    };
+
+    const handleSkipAhead30 = () => {
+        skipAhead30();
+    };
+
     return (
         <div className={styles.playback}>
-            <div className={styles.bookInfo}>
-                <h1>1177 B.C: The Year Civilization Collapsed</h1>
-                <p>Prologue: The Collapse of Civilizations: 1177 BC</p>
-            </div>
+            {currentBook ? (
+                <div className={styles.bookInfo}>
+                    <h1>{currentBook.title}</h1>
+                    <p>{currentBook.chapters[currentChapter]?.title || 'Chapter 1'}</p>
+                </div>
+            ) : (
+                <div className={styles.bookInfo}>
+                    <h1>Loading...</h1>
+                    <p>Please wait</p>
+                </div>
+            )}
 
             <div className={styles.buttons}>
-                <button className={styles.skip}><IoPlaySkipBack /></button>
+                <button 
+                    className={styles.skip} 
+                    onClick={handleSkipBack}
+                    disabled={currentChapter === 0}
+                >
+                    <IoPlaySkipBack />
+                </button>
                 <button className={styles.playPause} onClick={handlePlayPause}>
                     {isPlaying ? <IoPauseCircle /> : <IoPlayCircle />}
                 </button>
-                <button className={styles.skip}><IoPlaySkipForward /></button>
+                <button 
+                    className={styles.skip} 
+                    onClick={handleSkipForward}
+                    disabled={!currentBook || currentChapter === currentBook.chapters.length - 1}
+                >
+                    <IoPlaySkipForward />
+                </button>
             </div>
             <div className={styles.timeControl}>
                 <span className={styles.time}>{formatTime()}</span>
@@ -116,8 +175,21 @@ const Playback = () => {
             </div>
 
             <div className={styles.actions}>
-                <button className={styles.speed}><TbRewindBackward30 /></button>
-                <button className={styles.bookmark}><IoBookmarkOutline /></button>
+                <button 
+                    className={styles.speed} 
+                    onClick={handleRewind30}
+                >
+                    <TbRewindBackward30 />
+                </button>
+                <button className={styles.bookmark}>
+                    <IoBookmarkOutline />
+                </button>
+                <button 
+                    className={styles.speed} 
+                    onClick={handleSkipAhead30}
+                >
+                    <TbRewindForward30 />
+                </button>
             </div>
         </div>
     );
