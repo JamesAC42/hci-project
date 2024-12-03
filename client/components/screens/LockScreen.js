@@ -87,12 +87,12 @@ const LockScreen = ({ onUnlock }) => {
             <div className={styles.nowPlaying}>
                 <div className={styles.nowPlayingContent}>
                     <div className={styles.cover}>
-                        <Image src={books[0].coverImage} alt={books[0].title} fill />
+                        <Image src={books[3].coverImage} alt={books[3].title} fill />
                     </div>
                     <div className={styles.info}>
                         <div className={styles.source}>Joyner Audio</div>
-                        <div className={styles.title}>{books[0].title}</div>
-                        <div className={styles.author}>{books[0].author}</div>
+                        <div className={styles.title}>{books[3].title}</div>
+                        <div className={styles.author}>{books[3].author}</div>
                     </div>
                 </div>
             </div>
