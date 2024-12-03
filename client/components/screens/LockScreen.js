@@ -6,6 +6,8 @@ import { IoIosFlashlight, IoIosCamera  } from "react-icons/io";
 import { useRouter } from 'next/router';
 import wallpaperImage from '@/images/wallpaper.jpeg';
 
+import { books } from '@/data/books';
+
 const LockScreen = ({ onUnlock }) => {
     const router = useRouter();
     const [time, setTime] = useState('');
@@ -80,6 +82,19 @@ const LockScreen = ({ onUnlock }) => {
             <div className={styles.timeContainer}>
                 <div className={styles.date}>{date}</div>
                 <div className={styles.time}>{time}</div>
+            </div>
+
+            <div className={styles.nowPlaying}>
+                <div className={styles.nowPlayingContent}>
+                    <div className={styles.cover}>
+                        <Image src={books[0].coverImage} alt={books[0].title} fill />
+                    </div>
+                    <div className={styles.info}>
+                        <div className={styles.source}>Joyner Audio</div>
+                        <div className={styles.title}>{books[0].title}</div>
+                        <div className={styles.author}>{books[0].author}</div>
+                    </div>
+                </div>
             </div>
 
 
